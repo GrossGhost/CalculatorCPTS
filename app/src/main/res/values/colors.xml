@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="background">#FF000000</color>
     <color name="backgroundTextView">#BAEAEA</color>
-    <color name="backgroundOperandBtn">#6AEAEA</color>
-    <color name="backgroundNumberBtn">#9AEAEA</color>
+    <color name="backgroundOperandBtn">#4AEAEA</color>
+    <color name="backgroundNumberBtn">#8AEAEA</color>
 
 </resources>

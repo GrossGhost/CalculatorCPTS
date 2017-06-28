@@ -1,19 +1,16 @@
 package com.example.gross.calculatorcpts;
 
-
 import java.util.LinkedList;
 
-public class MathParser {
+class MathParser {
 
     private char[] operators = {'|', '&', '^', '+', '-', '*', '/'};
 
     private boolean isOperator(char c) {
-
         return String.copyValueOf(operators).contains("" + c);
     }
 
     private boolean isBracket(char c) {
-
         return c == '(' || c == ')';
     }
 
@@ -57,8 +54,6 @@ public class MathParser {
             case '/':
                 st.add(someTwo / someOne);
                 break;
-            default:
-                System.out.println("Oops");
         }
     }
 
@@ -70,7 +65,7 @@ public class MathParser {
 
         for (int i = 0; i < s.length(); i++) {
 
-            // проверка отрицательного числа
+            // if its negative number
             if (s.charAt(i) == '-') {
                 if (i == 0 || s.charAt(i - 1) == '(') {
 
@@ -81,29 +76,23 @@ public class MathParser {
             }
 
             char c = s.charAt(i);
-
             if (c == '(') {
-
                 someOpers.add('(');
-
             } else if (c == ')') {
 
                 while (someOpers.getLast() != '(') {
-
                     letGo(someNumbers, someOpers.removeLast());
-
                 }
-
                 someOpers.removeLast();
 
             } else if (isOperator(c)) {
+
                 while (!someOpers.isEmpty() && priority(someOpers.getLast()) >= priority(c)) {
-
                     letGo(someNumbers, someOpers.removeLast());
-
                 }
 
                 someOpers.add(c);
+
             } else {
 
                 StringBuilder operand = new StringBuilder();
@@ -115,9 +104,7 @@ public class MathParser {
                 }
 
                 while (i < s.length() && !isOperator(s.charAt(i)) && !isBracket(s.charAt(i))) {
-
                     operand.append(s.charAt(i++));
-
                 }
 
                 --i;
