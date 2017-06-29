@@ -67,7 +67,8 @@ class MathParser {
 
             // if its negative number
             if (s.charAt(i) == '-') {
-                if (i == 0 || s.charAt(i - 1) == '(') {
+                if (i == 0 || s.charAt(i - 1) == '(' ||
+                        MainActivity.MATH_OPERATORS.contains(""+s.charAt(i-1))) {
 
                     isNegativeNumber = true;
                     i++;

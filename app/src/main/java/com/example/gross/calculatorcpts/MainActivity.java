@@ -13,7 +13,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String MATH_OPERATORS = "+-*/|&^";
+    static final String MATH_OPERATORS = "+-*/|&^";
+    private static final String MATH_NUMBERS = "0123456789";
 
     private StringBuilder mathStr = new StringBuilder();
 
@@ -32,7 +33,17 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5, R.id.btn6,
             R.id.btn7, R.id.btn8, R.id.btn9, R.id.btnPlus, R.id.btnMinus, R.id.btnMultiple,
             R.id.btnDiv, R.id.btnOpenedBracket, R.id.btnClosedBracket})
-    public void onNumberClick(Button clickedButton) {
+    public void onClick(Button clickedButton) {
+
+        // add logic: a(b+c)(d-e) --> a*(b+c)*(d-e)
+        if (clickedButton.getId() == R.id.btnOpenedBracket){
+            if(mathStr.length()>0){
+                char preChar = mathStr.charAt(mathStr.length()-1);
+                if (MATH_NUMBERS.contains(""+preChar) || preChar == ')'){
+                    mathStr.append('*');
+                }
+            }
+        }
 
         mathStr.append(clickedButton.getText());
         calcTxt.setText(mathStr);
